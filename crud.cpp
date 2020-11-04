@@ -16,15 +16,19 @@ class Crud {
           hashtable = unordered_map<string,string>();
       }
       
-      void create(string k, string v) {
+      void Create(string k, string v) {
         hashtable.emplace(k, v);
       }
 
-      string retrieve(string k) {
+      string Read(string k) {
          return hashtable[k];
       }
 
-      void Remove(string k) {
+      void Update(string k, string v) {
+         hashtable[k] = v;
+      }
+
+      void Delete(string k) {
          hashtable.erase(hashtable.find(k)); 
       }
 
