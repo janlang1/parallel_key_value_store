@@ -170,7 +170,11 @@ int main(int argc, char** argv) {
     }
     else {
         if (!exit_code) {
-            <#statements#>
+            /* 1. Receive client request */
+            /* 2. Instantiate instance of CRUD class */
+            /* 3. Parse command. Determine what operation it is, separate key and value, and perform the operation using instance of CRUD class */
+            /* 4. If it's a READ op, send back the corresponding value for the key to P0 else send back a FAILURE Message (see Protocol.hpp) */
+            
         }
     }
     

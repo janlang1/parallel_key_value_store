@@ -20,6 +20,7 @@ const char UPDATE = 'U';
 const char DELETE = 'D';
 
 const std::string DONE = "DONE";
+const std::string FAIL = "FAIL";
 
 bool formattedProperly(std::string request);
 std::string getKey(std::string request);
