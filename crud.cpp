@@ -6,8 +6,6 @@
 
 using namespace std;
 
-const int T_S = 200;
-//only INTS right now but will change to be templated with Key k Value v
 class Crud {
    private:
       unordered_map<string,string> hashtable;
@@ -35,7 +33,7 @@ class Crud {
       ~Crud() {
       }
 };
-int main() {
+// int main() {
    
-   return 0;
-}
+//    return 0;
+// }
