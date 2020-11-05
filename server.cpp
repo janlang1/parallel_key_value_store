@@ -171,9 +171,27 @@ int main(int argc, char** argv) {
     else {
         if (!exit_code) {
             /* 1. Receive client request */
+            string request(MAX_STR_LEN);
+            int status = 0;
+            MPI_Recv(&request, request.size(), MPI_DOUBLE, rank, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             /* 2. Instantiate instance of CRUD class */
+            Crud crud = new Crud();
             /* 3. Parse command. Determine what operation it is, separate key and value, and perform the operation using instance of CRUD class */
+            //first letter 
+            if(request[0] == 'C'){
+
+            } else if (request[0] == 'R'){
+                String value = 
+                MPI_Send(&value, value.size(), MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+
+            } else if (request[0] == 'U'){
+                
+            } else if (request[0] == 'D'){
+                
+            }
             /* 4. If it's a READ op, send back the corresponding value for the key to P0 else send back a FAILURE Message (see Protocol.hpp) */
+            //send to process 0 
+
             
         }
     }
