@@ -178,16 +178,21 @@ int main(int argc, char** argv) {
             Crud crud = new Crud();
             /* 3. Parse command. Determine what operation it is, separate key and value, and perform the operation using instance of CRUD class */
             //first letter 
-            if(request[0] == 'C'){
-
-            } else if (request[0] == 'R'){
-                String value = 
-                MPI_Send(&value, value.size(), MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
-
-            } else if (request[0] == 'U'){
-                
-            } else if (request[0] == 'D'){
-                
+            if(request[0] == CREATE){
+                string k = getKey(request);
+                string v = getValue(request);
+                crud.Create(k,v);
+            } else if (request[0] == READ){
+                string k = getKey(request);
+                string v = crud.Read(k);
+                MPI_Send(&v, v.size(), MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
+            } else if (request[0] == UPDATE){
+                string k = getKey(request);
+                string v = getValue(request);
+                crud.Read(k,v);
+            } else if (request[0] == DELETE){
+                string k = getKey(request);
+                crud.Delete(k);
             }
             /* 4. If it's a READ op, send back the corresponding value for the key to P0 else send back a FAILURE Message (see Protocol.hpp) */
             //send to process 0 
