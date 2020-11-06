@@ -1,0 +1,183 @@
+8 latency
+Johns-MBP-2:parallel_key_value_store johnkang$ sh run_server.sh 
+There are 2 worker nodes
+^C^CJohns-MBP-2:parallel_key_value_store johnkang$ sh run_server.sh 
+There are 8 worker nodes
+Hash for key xNvLyJy9ye7s is 2205341690
+Sending request C xNvLyJy9ye7s wbN7pYSdrsUPptQv6kmuyQCaCABEhFygFHlFGzgPSiv9k4iVhNK2pTsgCPVhh9CsC3iyAnvmALuYtuh9K09i5pbdbPFp2ArLWj7Y7AX3u9arI3sVq3soz0cZkDtVEjJgHisnBQ4LOkyRzOkacLb8Mo6Hna2KpUyF to node 4
+Execution time is 0.000306 for node 4
+Hash for key su83tnFNmB20 is 2584784439
+Sending request C su83tnFNmB20 raCh2GxebTI2aNefXhbfzQJhhY758K6fBeqzelyC8E42L24R9brDgJntcXRlXct2f1svl2HnEKJijp5HpOabniaxCWy65f7qcVKmMf7aAcdCBFJOxO1LZgiBX9EmrSUsY0On58fwPqmilRNT9X26Sg7NgUpn7fbI to node 5
+Execution time is 0.000020 for node 5
+Hash for key itpHpERT is 1559882927
+Sending request C itpHpERT 23COUSNXtWWN3nQej7lJrthUhTU5Efi9aEKb3k9RKoxqL8iy6c7tmXNYYZtvyV0PUHCjZHYKi0Uj40uJCua5kbJ7y0LyPuKZkgYFsucxAXOShtkwryXPYwrClINLahqKvR8j9sSMUzwNWB4O7FwluJMluN8blo5a to node 2
+Execution time is 0.000020 for node 2
+Hash for key IR2AbPTuDRZ1PTCF is 4122512223
+Sending request C IR2AbPTuDRZ1PTCF NLpuoIIww3Sqz7swQtL41qdMMRaneYbJpYmoht59QHNHCMEWTf9lcIPBQ913MhAsqXx0utGoBYo5kdIV3Kr1nGA4iOYbuKJlIVX24MgfOIrIE9fvRfkSdJhvkyRLyZkxmOwXl6AAmORwv82tohwzMhMV4eZy4bhy to node 4
+Execution time is 0.000007 for node 4
+Hash for key JbvM is 1937858556
+Sending request C JbvM N8XB1Wr9aTyC5jG34YG7M2V4vvayeynqTW0OezxXZkH7ERa0K12wNgtnXFiFVVdHv3bGWWGOV5ecvHVSxNw557f0ysAqg6FHVVd1VTjt5ELWSN19ndimj6c68MS0kF1fBEb4uXOo7SpjQSQSmdy92YlROPvq97Jq to node 1
+Execution time is 0.000018 for node 1
+Hash for key ggF1EfsZWiZkI is 3195049626
+Sending request C ggF1EfsZWiZkI aFWAoiTjV89ZhEoj8Wm5tCgRWAbLLog2Zu8gWQobkDfkH0ZxPI4dItPDQyQCavHx8mhEciLULY1fS7tluJbc8XbZFxlvtjRepQuqCRTWfKkwFovszWJEFwHg0oiZiPpvEAKLwEgO6OcIavqguVsVqj9R4R0cMlqr to node 5
+Execution time is 0.000007 for node 5
+Hash for key WNwSf64NRxMiQeXtv is 1082653760
+Sending request C WNwSf64NRxMiQeXtv m6XlsG7lXGZHcCwBjjf7zmUotG6amQ46622U26iuRAmMr5F4siq01xNH89nTRQsQ2w9F1KExWtd2x6vuVp7spYcOb6deqsAnCdoO5qTHJYQmg0aO3FV2vJqPDmU0NTdEh95kY2l4xBywguJgyGvuOYtsJQ10K92R to node 5
+Execution time is 0.000013 for node 5
+Hash for key XPPib is 869040196
+Sending request C XPPib FRDmlpWOSMrrf84wYzMMoxItD9zoP1H7rFFXdOyByKA4Dhwa6oXSq6lokl4wmjBVL81YbZITI9XhFfSkPp37auoDEuldQLFQoQzsXO7MRpTK9NWxerpwQqmBN57cv6weAv5B7w4NkAdPuc9MIYdWaZtpo2YTHvtN to node 3
+Execution time is 0.000020 for node 3
+Hash for key JbvM is 1937858556
+Sending request R JbvM to node 1
+Execution time is 0.000054 for node 1
+Hash for key itpHpERT is 1559882927
+Sending request D itpHpERT to node 2
+Execution time is 0.000007 for node 2
+Hash for key su83tnFNmB20 is 2584784439
+Sending request U su83tnFNmB20 ASy5HAH13iJEVKEE0RaOe0KWtd2I0TABfJW8OVlmKufoB9pbJr to node 5
+Execution time is 0.000012 for node 5
+Hash for key xNvLyJy9ye7s is 2205341690
+Sending request U xNvLyJy9ye7s ySkpjtsj4mOmaKdhKpDG1laS5ZFENvQiGadDBen2Oixbwz9Ph0uPP8zgHGNN74VVeDfOi3P9mf9jzzPZ to node 4
+Execution time is 0.000014 for node 4
+Hash for key IR2AbPTuDRZ1PTCF is 4122512223
+Sending request U IR2AbPTuDRZ1PTCF IDUv5JJMVhZVivEOA6rwCMordGdBjSKWIH253cF7Kw8AqCp9IPuMQqHKZrbYst6h to node 4
+Execution time is 0.000007 for node 4
+Hash for key u83tnFNmB20 is 1345914260
+Sending request R u83tnFNmB20 to node 2
+Execution time is 0.000052 for node 2
+
+2 load balance 
+Johns-MBP-2:parallel_key_value_store johnkang$ sh run_server.sh 
+There are 2 worker nodes
+Hash for key xNvLyJy9ye7s is 2205341690
+Sending request C xNvLyJy9ye7s wbN7pYSdrsUPptQv6kmuyQCaCABEhFygFHlFGzgPSiv9k4iVhNK2pTsgCPVhh9CsC3iyAnvmALuYtuh9K09i5pbdbPFp2ArLWj7Y7AX3u9arI3sVq3soz0cZkDtVEjJgHisnBQ4LOkyRzOkacLb8Mo6Hna2KpUyF to node 1
+Execution time is 0.000018 for node 1
+Hash for key su83tnFNmB20 is 2584784439
+Sending request C su83tnFNmB20 raCh2GxebTI2aNefXhbfzQJhhY758K6fBeqzelyC8E42L24R9brDgJntcXRlXct2f1svl2HnEKJijp5HpOabniaxCWy65f7qcVKmMf7aAcdCBFJOxO1LZgiBX9EmrSUsY0On58fwPqmilRNT9X26Sg7NgUpn7fbI to node 1
+Execution time is 0.000008 for node 1
+Hash for key itpHpERT is 1559882927
+Sending request C itpHpERT 23COUSNXtWWN3nQej7lJrthUhTU5Efi9aEKb3k9RKoxqL8iy6c7tmXNYYZtvyV0PUHCjZHYKi0Uj40uJCua5kbJ7y0LyPuKZkgYFsucxAXOShtkwryXPYwrClINLahqKvR8j9sSMUzwNWB4O7FwluJMluN8blo5a to node 1
+Execution time is 0.000015 for node 1
+Hash for key IR2AbPTuDRZ1PTCF is 4122512223
+Sending request C IR2AbPTuDRZ1PTCF NLpuoIIww3Sqz7swQtL41qdMMRaneYbJpYmoht59QHNHCMEWTf9lcIPBQ913MhAsqXx0utGoBYo5kdIV3Kr1nGA4iOYbuKJlIVX24MgfOIrIE9fvRfkSdJhvkyRLyZkxmOwXl6AAmORwv82tohwzMhMV4eZy4bhy to node 2
+Execution time is 0.000020 for node 2
+Hash for key JbvM is 1937858556
+Sending request C JbvM N8XB1Wr9aTyC5jG34YG7M2V4vvayeynqTW0OezxXZkH7ERa0K12wNgtnXFiFVVdHv3bGWWGOV5ecvHVSxNw557f0ysAqg6FHVVd1VTjt5ELWSN19ndimj6c68MS0kF1fBEb4uXOo7SpjQSQSmdy92YlROPvq97Jq to node 1
+Execution time is 0.000006 for node 1
+Hash for key ggF1EfsZWiZkI is 3195049626
+Sending request C ggF1EfsZWiZkI aFWAoiTjV89ZhEoj8Wm5tCgRWAbLLog2Zu8gWQobkDfkH0ZxPI4dItPDQyQCavHx8mhEciLULY1fS7tluJbc8XbZFxlvtjRepQuqCRTWfKkwFovszWJEFwHg0oiZiPpvEAKLwEgO6OcIavqguVsVqj9R4R0cMlqr to node 2
+Execution time is 0.000006 for node 2
+Hash for key WNwSf64NRxMiQeXtv is 1082653760
+Sending request C WNwSf64NRxMiQeXtv m6XlsG7lXGZHcCwBjjf7zmUotG6amQ46622U26iuRAmMr5F4siq01xNH89nTRQsQ2w9F1KExWtd2x6vuVp7spYcOb6deqsAnCdoO5qTHJYQmg0aO3FV2vJqPDmU0NTdEh95kY2l4xBywguJgyGvuOYtsJQ10K92R to node 2
+Execution time is 0.000015 for node 2
+Hash for key XPPib is 869040196
+Sending request C XPPib FRDmlpWOSMrrf84wYzMMoxItD9zoP1H7rFFXdOyByKA4Dhwa6oXSq6lokl4wmjBVL81YbZITI9XhFfSkPp37auoDEuldQLFQoQzsXO7MRpTK9NWxerpwQqmBN57cv6weAv5B7w4NkAdPuc9MIYdWaZtpo2YTHvtN to node 2
+Execution time is 0.000006 for node 2
+Hash for key JbvM is 1937858556
+Sending request R JbvM to node 1
+Execution time is 0.000038 for node 1
+Hash for key itpHpERT is 1559882927
+Sending request D itpHpERT to node 1
+Execution time is 0.000007 for node 1
+Hash for key su83tnFNmB20 is 2584784439
+Sending request U su83tnFNmB20 ASy5HAH13iJEVKEE0RaOe0KWtd2I0TABfJW8OVlmKufoB9pbJr to node 1
+Execution time is 0.000015 for node 1
+Hash for key xNvLyJy9ye7s is 2205341690
+Sending request U xNvLyJy9ye7s ySkpjtsj4mOmaKdhKpDG1laS5ZFENvQiGadDBen2Oixbwz9Ph0uPP8zgHGNN74VVeDfOi3P9mf9jzzPZ to node 1
+Execution time is 0.000007 for node 1
+Hash for key IR2AbPTuDRZ1PTCF is 4122512223
+Sending request R IR2AbPTuDRZ1PTCF to node 2
+Execution time is 0.000057 for node 2
+
+4 load balancing
+Hash for key xNvLyJy9ye7s is 2205341690
+Sending request C xNvLyJy9ye7s wbN7pYSdrsUPptQv6kmuyQCaCABEhFygFHlFGzgPSiv9k4iVhNK2pTsgCPVhh9CsC3iyAnvmALuYtuh9K09i5pbdbPFp2ArLWj7Y7AX3u9arI3sVq3soz0cZkDtVEjJgHisnBQ4LOkyRzOkacLb8Mo6Hna2KpUyF to node 4
+Execution time is 0.000019 for node 4
+Hash for key su83tnFNmB20 is 2584784439
+Sending request C su83tnFNmB20 raCh2GxebTI2aNefXhbfzQJhhY758K6fBeqzelyC8E42L24R9brDgJntcXRlXct2f1svl2HnEKJijp5HpOabniaxCWy65f7qcVKmMf7aAcdCBFJOxO1LZgiBX9EmrSUsY0On58fwPqmilRNT9X26Sg7NgUpn7fbI to node 4
+Execution time is 0.000006 for node 4
+Hash for key itpHpERT is 1559882927
+Sending request C itpHpERT 23COUSNXtWWN3nQej7lJrthUhTU5Efi9aEKb3k9RKoxqL8iy6c7tmXNYYZtvyV0PUHCjZHYKi0Uj40uJCua5kbJ7y0LyPuKZkgYFsucxAXOShtkwryXPYwrClINLahqKvR8j9sSMUzwNWB4O7FwluJMluN8blo5a to node 3
+Execution time is 0.000018 for node 3
+Hash for key IR2AbPTuDRZ1PTCF is 4122512223
+Sending request C IR2AbPTuDRZ1PTCF NLpuoIIww3Sqz7swQtL41qdMMRaneYbJpYmoht59QHNHCMEWTf9lcIPBQ913MhAsqXx0utGoBYo5kdIV3Kr1nGA4iOYbuKJlIVX24MgfOIrIE9fvRfkSdJhvkyRLyZkxmOwXl6AAmORwv82tohwzMhMV4eZy4bhy to node 2
+Execution time is 0.000093 for node 2
+Hash for key JbvM is 1937858556
+Sending request C JbvM N8XB1Wr9aTyC5jG34YG7M2V4vvayeynqTW0OezxXZkH7ERa0K12wNgtnXFiFVVdHv3bGWWGOV5ecvHVSxNw557f0ysAqg6FHVVd1VTjt5ELWSN19ndimj6c68MS0kF1fBEb4uXOo7SpjQSQSmdy92YlROPvq97Jq to node 1
+Execution time is 0.000019 for node 1
+Hash for key ggF1EfsZWiZkI is 3195049626
+Sending request C ggF1EfsZWiZkI aFWAoiTjV89ZhEoj8Wm5tCgRWAbLLog2Zu8gWQobkDfkH0ZxPI4dItPDQyQCavHx8mhEciLULY1fS7tluJbc8XbZFxlvtjRepQuqCRTWfKkwFovszWJEFwHg0oiZiPpvEAKLwEgO6OcIavqguVsVqj9R4R0cMlqr to node 2
+Execution time is 0.000006 for node 2
+Hash for key WNwSf64NRxMiQeXtv is 1082653760
+Sending request C WNwSf64NRxMiQeXtv m6XlsG7lXGZHcCwBjjf7zmUotG6amQ46622U26iuRAmMr5F4siq01xNH89nTRQsQ2w9F1KExWtd2x6vuVp7spYcOb6deqsAnCdoO5qTHJYQmg0aO3FV2vJqPDmU0NTdEh95kY2l4xBywguJgyGvuOYtsJQ10K92R to node 2
+Execution time is 0.000015 for node 2
+Hash for key XPPib is 869040196
+Sending request C XPPib FRDmlpWOSMrrf84wYzMMoxItD9zoP1H7rFFXdOyByKA4Dhwa6oXSq6lokl4wmjBVL81YbZITI9XhFfSkPp37auoDEuldQLFQoQzsXO7MRpTK9NWxerpwQqmBN57cv6weAv5B7w4NkAdPuc9MIYdWaZtpo2YTHvtN to node 2
+Execution time is 0.000006 for node 2
+Hash for key JbvM is 1937858556
+Sending request R JbvM to node 1
+Execution time is 0.000040 for node 1
+Hash for key itpHpERT is 1559882927
+Sending request D itpHpERT to node 3
+Execution time is 0.000007 for node 3
+Hash for key su83tnFNmB20 is 2584784439
+Sending request U su83tnFNmB20 ASy5HAH13iJEVKEE0RaOe0KWtd2I0TABfJW8OVlmKufoB9pbJr to node 4
+Execution time is 0.000013 for node 4
+Hash for key xNvLyJy9ye7s is 2205341690
+Sending request U xNvLyJy9ye7s ySkpjtsj4mOmaKdhKpDG1laS5ZFENvQiGadDBen2Oixbwz9Ph0uPP8zgHGNN74VVeDfOi3P9mf9jzzPZ to node 4
+Execution time is 0.000007 for node 4
+Hash for key IR2AbPTuDRZ1PTCF is 4122512223
+Sending request U IR2AbPTuDRZ1PTCF IDUv5JJMVhZVivEOA6rwCMordGdBjSKWIH253cF7Kw8AqCp9IPuMQqHKZrbYst6h to node 2
+Execution time is 0.000013 for node 2
+Hash for key u83tnFNmB20 is 1345914260
+Sending request R u83tnFNmB20 to node 2
+Execution time is 0.000051 for node 2
+
+8 load balancing
+There are 8 worker nodes
+Hash for key xNvLyJy9ye7s is 2205341690
+Sending request C xNvLyJy9ye7s wbN7pYSdrsUPptQv6kmuyQCaCABEhFygFHlFGzgPSiv9k4iVhNK2pTsgCPVhh9CsC3iyAnvmALuYtuh9K09i5pbdbPFp2ArLWj7Y7AX3u9arI3sVq3soz0cZkDtVEjJgHisnBQ4LOkyRzOkacLb8Mo6Hna2KpUyF to node 4
+Execution time is 0.000374 for node 4
+Hash for key su83tnFNmB20 is 2584784439
+Sending request C su83tnFNmB20 raCh2GxebTI2aNefXhbfzQJhhY758K6fBeqzelyC8E42L24R9brDgJntcXRlXct2f1svl2HnEKJijp5HpOabniaxCWy65f7qcVKmMf7aAcdCBFJOxO1LZgiBX9EmrSUsY0On58fwPqmilRNT9X26Sg7NgUpn7fbI to node 5
+Execution time is 0.000026 for node 5
+Hash for key itpHpERT is 1559882927
+Sending request C itpHpERT 23COUSNXtWWN3nQej7lJrthUhTU5Efi9aEKb3k9RKoxqL8iy6c7tmXNYYZtvyV0PUHCjZHYKi0Uj40uJCua5kbJ7y0LyPuKZkgYFsucxAXOShtkwryXPYwrClINLahqKvR8j9sSMUzwNWB4O7FwluJMluN8blo5a to node 2
+Execution time is 0.000020 for node 2
+Hash for key IR2AbPTuDRZ1PTCF is 4122512223
+Sending request C IR2AbPTuDRZ1PTCF NLpuoIIww3Sqz7swQtL41qdMMRaneYbJpYmoht59QHNHCMEWTf9lcIPBQ913MhAsqXx0utGoBYo5kdIV3Kr1nGA4iOYbuKJlIVX24MgfOIrIE9fvRfkSdJhvkyRLyZkxmOwXl6AAmORwv82tohwzMhMV4eZy4bhy to node 4
+Execution time is 0.000005 for node 4
+Hash for key JbvM is 1937858556
+Sending request C JbvM N8XB1Wr9aTyC5jG34YG7M2V4vvayeynqTW0OezxXZkH7ERa0K12wNgtnXFiFVVdHv3bGWWGOV5ecvHVSxNw557f0ysAqg6FHVVd1VTjt5ELWSN19ndimj6c68MS0kF1fBEb4uXOo7SpjQSQSmdy92YlROPvq97Jq to node 1
+Execution time is 0.000022 for node 1
+Hash for key ggF1EfsZWiZkI is 3195049626
+Sending request C ggF1EfsZWiZkI aFWAoiTjV89ZhEoj8Wm5tCgRWAbLLog2Zu8gWQobkDfkH0ZxPI4dItPDQyQCavHx8mhEciLULY1fS7tluJbc8XbZFxlvtjRepQuqCRTWfKkwFovszWJEFwHg0oiZiPpvEAKLwEgO6OcIavqguVsVqj9R4R0cMlqr to node 5
+Execution time is 0.000006 for node 5
+Hash for key WNwSf64NRxMiQeXtv is 1082653760
+Sending request C WNwSf64NRxMiQeXtv m6XlsG7lXGZHcCwBjjf7zmUotG6amQ46622U26iuRAmMr5F4siq01xNH89nTRQsQ2w9F1KExWtd2x6vuVp7spYcOb6deqsAnCdoO5qTHJYQmg0aO3FV2vJqPDmU0NTdEh95kY2l4xBywguJgyGvuOYtsJQ10K92R to node 5
+Execution time is 0.000017 for node 5
+Hash for key XPPib is 869040196
+Sending request C XPPib FRDmlpWOSMrrf84wYzMMoxItD9zoP1H7rFFXdOyByKA4Dhwa6oXSq6lokl4wmjBVL81YbZITI9XhFfSkPp37auoDEuldQLFQoQzsXO7MRpTK9NWxerpwQqmBN57cv6weAv5B7w4NkAdPuc9MIYdWaZtpo2YTHvtN to node 3
+Execution time is 0.000025 for node 3
+Hash for key JbvM is 1937858556
+Sending request R JbvM to node 1
+Execution time is 0.000038 for node 1
+Hash for key itpHpERT is 1559882927
+Sending request D itpHpERT to node 2
+Execution time is 0.000008 for node 2
+Hash for key su83tnFNmB20 is 2584784439
+Sending request U su83tnFNmB20 ASy5HAH13iJEVKEE0RaOe0KWtd2I0TABfJW8OVlmKufoB9pbJr to node 5
+Execution time is 0.000014 for node 5
+Hash for key xNvLyJy9ye7s is 2205341690
+Sending request U xNvLyJy9ye7s ySkpjtsj4mOmaKdhKpDG1laS5ZFENvQiGadDBen2Oixbwz9Ph0uPP8zgHGNN74VVeDfOi3P9mf9jzzPZ to node 4
+Execution time is 0.000012 for node 4
+Hash for key JbvM is 1937858556
+Sending request D JbvM to node 1
+Execution time is 0.000007 for node 1
+Hash for key IR2AbPTuDRZ1PTCF is 4122512223
+Sending request U IR2AbPTuDRZ1PTCF IDUv5JJMVhZVivEOA6rwCMordGdBjSKWIH253cF7Kw8AqCp9IPuMQqHKZrbYst6h to node 4
+Execution time is 0.000007 for node 4
+Hash for key u83tnFNmB20 is 1345914260
+Sending request R u83tnFNmB20 to node 2
+Execution time is 0.000047 for node 2
+
