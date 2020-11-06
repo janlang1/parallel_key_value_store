@@ -172,7 +172,7 @@ int main(int argc, char** argv) {
         if (!exit_code) {
             /* 1. Receive client request */
             string request(MAX_STR_LEN);
-            int status = 0;
+            //int status = 0;
             MPI_Recv(&request, request.size(), MPI_DOUBLE, rank, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             /* 2. Instantiate instance of CRUD class */
             Crud crud = new Crud();
