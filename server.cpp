@@ -8,7 +8,9 @@
 #include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <time.h>
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <mpi.h>
 
@@ -52,7 +54,7 @@ void *serveClient(void *arg) {
     setsockopt(client_socket_fd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof(tv));
     
     while (1) {
-        cout << "hello from master" << endl;
+        //cout << "hello from master" << endl;
         /* Get client request */
         string request(MAX_STR_LEN, ' ');
         int n_bytes_read = read(client_socket_fd, (void *) request.c_str(), MAX_STR_LEN);
@@ -60,30 +62,30 @@ void *serveClient(void *arg) {
             cerr << "Error reading or timeout" << endl;
             break;
         }
-        
+                
         /* Shrink to appropriate size */
-        cout << "Read " << n_bytes_read << " from client" << endl;
+        // cout << "Read " << n_bytes_read << " from client" << endl;
         request.resize(n_bytes_read);
-        
+                
         /* Client has no more requests */
         if (request == DONE) {
             cout << "Client done" << endl;
             break;
         }
-        
+                
         /* Extract the key from the request and send it to the appropriate worker node */
         string key = getKey(request);
         int node = consistentHasher.sendRequestTo(key);
         cout << "Sending request " << request << " to node " << node << endl;
         MPI_Send(request.c_str(), request.size(), MPI_CHAR, node, 0, MPI_COMM_WORLD);
-        
+                
         /* READ requests should return a value back from the worker node */
         if (request[0] == READ) {
             string value(MAX_STR_LEN, ' ');
-            cout << "Waiting for value for key " << key << endl;
+            // cout << "Waiting for value for key " << key << endl;
             MPI_Recv((void *) value.c_str(), MAX_STR_LEN, MPI_CHAR, node, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             value = value.substr(0, value.find(" ", 0));
-            cout << "The value is " << value << endl;
+            // cout << "The value is " << value << endl;
             if (write(client_socket_fd, value.c_str(), value.size()) < 0) {
                 cerr << "Error writing" << endl;
                 break;
@@ -183,7 +185,7 @@ int main(int argc, char** argv) {
     else {
         if (!exit_code) {
             while (1) {
-                cout << "Hello from worker " << rank << endl;
+                // cout << "Hello from worker " << rank << endl;
                 /* 1. Receive client request */
                 int found;
                 string request(MAX_STR_LEN, ' ');
@@ -191,30 +193,36 @@ int main(int argc, char** argv) {
                 
                 found = request.find_last_not_of(' '); // Remove trailing spaces
                 request.erase(found + 1);
-                //cout << "found is " << found << endl;
-                //request = request.substr(0, request.find(" ", 1));
+                /*
                 cout << "Received request " << request << endl;
                 cout << "Request has size " << request.size() << endl;
-                
+                */
                 /* 2. Parse command. Determine what operation it is, separate key and value, and perform the operation using instance of CRUD class */
                 //first letter
-                if(request[0] == CREATE){
-                    string k = getKey(request);
-                    string v = getValue(request);
+                struct timespec start, stop;
+                string k = getKey(request);
+                string v;
+                double t1, t2;
+                t1 = MPI_Wtime();
+                
+                if (request[0] == CREATE){
+                    v = getValue(request);
                     cruds[rank - 1].Create(k,v);
                 } else if (request[0] == READ){
-                    string k = getKey(request);
-                    string v = cruds[rank - 1].Read(k);
-                    cout << "value for key " << k << " is " << v << endl;
+                    v = cruds[rank - 1].Read(k);
+                    // cout << "value for key " << k << " is " << v << endl;
                     MPI_Send(v.c_str(), v.size(), MPI_CHAR, 0, 0, MPI_COMM_WORLD);
                 } else if (request[0] == UPDATE){
-                    string k = getKey(request);
-                    string v = getValue(request);
+                    v = getValue(request);
                     cruds[rank - 1].Update(k,v);
                 } else {
-                    string k = getKey(request);
                     cruds[rank - 1].Delete(k);
                 }
+                
+                t2 = MPI_Wtime();
+                cout << fixed;
+                cout << setprecision(6) << "Execution time is " << (t2 - t1) << " for node " << rank << endl;
+                
             }
         }
     }
