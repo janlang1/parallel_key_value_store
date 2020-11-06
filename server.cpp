@@ -1,5 +1,6 @@
 #include <netinet/in.h>
 #include <pthread.h>
+#include <cassert>
 #include <signal.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,21 +14,23 @@
 
 #include "ConsistentHasher.hpp"
 #include "Protocol.hpp"
+#include "crud.hpp"
 
 #define ERROR 1
 #define CTRLC 2
 
 using namespace std;
 
-void signal_handler(int signal_number); // Handle SIGINT signals
-
-/*
-typedef struct pthread_arg_t {
-    int client_socket_fd;
-    struct sockaddr_in client_address;
-} pthread_arg_t;
-*/
+int exit_code = 0;
 ConsistentHasher consistentHasher;
+
+// Handle SIGINT signals
+void signal_handler(int signal_number) {
+    if (signal_number == SIGINT) {
+        cout << "Terminating program" << endl;
+        exit_code = CTRLC;
+    }
+}
 
 void *serveClient(void *arg) {
     int client_address_len, socket_fd, client_socket_fd;
@@ -36,7 +39,7 @@ void *serveClient(void *arg) {
     /* Accept connection from client */
     client_address_len = sizeof(client_address);
     socket_fd = *((int *) arg);
-    client_socket_fd = accept(socket_fd, (struct sockaddr *)&client_address, &client_address_len);
+    client_socket_fd = accept(socket_fd, (struct sockaddr *) &client_address, (socklen_t *) &client_address_len);
     if (client_socket_fd == -1) {
         cerr << "Error accepting" << endl;
         return NULL;
@@ -49,32 +52,38 @@ void *serveClient(void *arg) {
     setsockopt(client_socket_fd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof(tv));
     
     while (1) {
+        cout << "hello from master" << endl;
         /* Get client request */
-        string request(MAX_STR_LEN);
-        int n_bytes_read = read(client_socket_fd, request.c_str(), MAX_STR_LEN);
+        string request(MAX_STR_LEN, ' ');
+        int n_bytes_read = read(client_socket_fd, (void *) request.c_str(), MAX_STR_LEN);
         if (n_bytes_read < 0) {
             cerr << "Error reading or timeout" << endl;
             break;
         }
         
+        /* Shrink to appropriate size */
+        cout << "Read " << n_bytes_read << " from client" << endl;
+        request.resize(n_bytes_read);
+        
         /* Client has no more requests */
         if (request == DONE) {
+            cout << "Client done" << endl;
             break;
         }
-        
-        /* Shrink to appropriate size */
-        request.resize(n_bytes_read);
         
         /* Extract the key from the request and send it to the appropriate worker node */
         string key = getKey(request);
         int node = consistentHasher.sendRequestTo(key);
+        cout << "Sending request " << request << " to node " << node << endl;
         MPI_Send(request.c_str(), request.size(), MPI_CHAR, node, 0, MPI_COMM_WORLD);
         
         /* READ requests should return a value back from the worker node */
         if (request[0] == READ) {
             string value(MAX_STR_LEN, ' ');
-            MPI_Recv(value.c_str(), request.size(), MPI_CHAR, node, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            value = value.substr(0, string1.find(" ", 0));
+            cout << "Waiting for value for key " << key << endl;
+            MPI_Recv((void *) value.c_str(), MAX_STR_LEN, MPI_CHAR, node, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            value = value.substr(0, value.find(" ", 0));
+            cout << "The value is " << value << endl;
             if (write(client_socket_fd, value.c_str(), value.size()) < 0) {
                 cerr << "Error writing" << endl;
                 break;
@@ -87,15 +96,17 @@ void *serveClient(void *arg) {
 
 
 int main(int argc, char** argv) {
-    int exit_code, size, rank, provided;
-    MPI_Init_thread(&argc, &argv, MPI_THREAD_MULTIPLE, &provided);
+    int size, rank, provided;
+    int ret = MPI_Init_thread(&argc, &argv, MPI_THREAD_MULTIPLE, &provided);
+    assert(ret == 0 && provided == MPI_THREAD_MULTIPLE);
     MPI_Comm_size(MPI_COMM_WORLD,&size);
     MPI_Comm_rank(MPI_COMM_WORLD,&rank);
-    exit_code = 0;
+    Crud cruds[size - 1];
    
     /* Master process */
     if (rank == 0) {
         /* Hash each worker node before accepting any client requests */
+        cout << "There are " << (size - 1) << " worker nodes" << endl;
         consistentHasher.setN(size - 1);
         for (int i = 1; i < size; i++) {
             consistentHasher.addNode(i);
@@ -125,7 +136,7 @@ int main(int argc, char** argv) {
         }
         
         // Bind address to socket
-        if (bind(socket_fd, (struct sockaddr *)&address, sizeof address) == -1) {
+        if (::bind(socket_fd, (struct sockaddr *)&address, sizeof(address)) == -1) {
             cerr << "Error binding socket" << endl;
             exit_code = ERROR;
             MPI_Bcast(&exit_code, 1, MPI_INT, 0, MPI_COMM_WORLD);
@@ -139,9 +150,8 @@ int main(int argc, char** argv) {
         }
         
         // Install signal handler (testing purposes)
-        if (signal(SIGINT, signal_handler) == SIGINT) {
-            cout << "Terminating program" << endl;
-            exit_code = CTRLC;
+        signal(SIGINT, signal_handler);
+        if (exit_code == CTRLC) {
             MPI_Bcast(&exit_code, 1, MPI_INT, 0, MPI_COMM_WORLD);
         }
         
@@ -159,45 +169,53 @@ int main(int argc, char** argv) {
             
             // Join threads
             for (int i = 0; i < size - 1; i++) {
-                if (pthread_join(&pthreads[i], NULL)) {
+                if (pthread_join(pthreads[i], NULL)) {
                     cerr << "Error joining thread" << endl;
                     exit_code = ERROR;
                     MPI_Bcast(&exit_code, 1, MPI_INT, 0, MPI_COMM_WORLD);
                     break;
                 }
             }
+            
+            cout << "Joined threads" << endl;
         }
     }
     else {
         if (!exit_code) {
-            /* 1. Receive client request */
-            string request(MAX_STR_LEN);
-            //int status = 0;
-            MPI_Recv(&request, request.size(), MPI_DOUBLE, rank, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            /* 2. Instantiate instance of CRUD class */
-            Crud crud = new Crud();
-            /* 3. Parse command. Determine what operation it is, separate key and value, and perform the operation using instance of CRUD class */
-            //first letter 
-            if(request[0] == CREATE){
-                string k = getKey(request);
-                string v = getValue(request);
-                crud.Create(k,v);
-            } else if (request[0] == READ){
-                string k = getKey(request);
-                string v = crud.Read(k);
-                MPI_Send(&v, v.size(), MPI_DOUBLE, 1, 0, MPI_COMM_WORLD);
-            } else if (request[0] == UPDATE){
-                string k = getKey(request);
-                string v = getValue(request);
-                crud.Read(k,v);
-            } else if (request[0] == DELETE){
-                string k = getKey(request);
-                crud.Delete(k);
+            while (1) {
+                cout << "Hello from worker " << rank << endl;
+                /* 1. Receive client request */
+                int found;
+                string request(MAX_STR_LEN, ' ');
+                MPI_Recv((void *) request.c_str(), request.size(), MPI_CHAR, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+                
+                found = request.find_last_not_of(' '); // Remove trailing spaces
+                request.erase(found + 1);
+                //cout << "found is " << found << endl;
+                //request = request.substr(0, request.find(" ", 1));
+                cout << "Received request " << request << endl;
+                cout << "Request has size " << request.size() << endl;
+                
+                /* 2. Parse command. Determine what operation it is, separate key and value, and perform the operation using instance of CRUD class */
+                //first letter
+                if(request[0] == CREATE){
+                    string k = getKey(request);
+                    string v = getValue(request);
+                    cruds[rank - 1].Create(k,v);
+                } else if (request[0] == READ){
+                    string k = getKey(request);
+                    string v = cruds[rank - 1].Read(k);
+                    cout << "value for key " << k << " is " << v << endl;
+                    MPI_Send(v.c_str(), v.size(), MPI_CHAR, 0, 0, MPI_COMM_WORLD);
+                } else if (request[0] == UPDATE){
+                    string k = getKey(request);
+                    string v = getValue(request);
+                    cruds[rank - 1].Update(k,v);
+                } else {
+                    string k = getKey(request);
+                    cruds[rank - 1].Delete(k);
+                }
             }
-            /* 4. If it's a READ op, send back the corresponding value for the key to P0 else send back a FAILURE Message (see Protocol.hpp) */
-            //send to process 0 
-
-            
         }
     }
     

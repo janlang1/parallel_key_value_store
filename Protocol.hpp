@@ -19,6 +19,7 @@ const char READ = 'R';
 const char UPDATE = 'U';
 const char DELETE = 'D';
 
+const std::string SERVER_IP = "127.0.0.1";
 const std::string DONE = "DONE";
 const std::string FAIL = "FAIL";
 

@@ -1,39 +1,23 @@
-#include<iostream>
-#include<cstdlib>
-#include<string>
-#include<cstdio>
-#include<unordered_map>
+#include "crud.hpp"
+#include "Protocol.hpp"
 
-using namespace std;
+void Crud::Create(std::string k, std::string v) {
+    hashtable.emplace(k, v);
+}
 
-class Crud {
-   private:
-      unordered_map<string,string> hashtable;
-   public:
-      Crud() {
-          hashtable = unordered_map<string,string>();
-      }
-      
-      void Create(string k, string v) {
-        hashtable.emplace(k, v);
-      }
+std::string Crud::Read(std::string k) {
+    return (hashtable.find(k) != hashtable.end()) ? hashtable[k] : FAIL;
+}
 
-      string Read(string k) {
-         return hashtable[k];
-      }
+void Crud::Update(std::string k, std::string v) {
+    if (hashtable.find(k) != hashtable.end()) {
+        hashtable[k] = v;
+    }
+}
 
-      void Update(string k, string v) {
-         hashtable[k] = v;
-      }
-
-      void Delete(string k) {
-         hashtable.erase(hashtable.find(k)); 
-      }
-
-      ~Crud() {
-      }
-};
-// int main() {
-   
-//    return 0;
-// }
+void Crud::Delete(std::string k) {
+    auto it = hashtable.find(k);
+    if (it != hashtable.end()) {
+        hashtable.erase(hashtable.find(k));
+    }
+}
