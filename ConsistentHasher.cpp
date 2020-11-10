@@ -7,6 +7,7 @@
 
 /* Adds a node to the ring by hashing it the specified number of times. Sort the list of hashes every time after introducing a new node to enable binary search when determining what node should handle a particular request. */
 void ConsistentHasher::addNode(int node) {
+    std::cout << "m_n is " << m_n << std::endl;
     auto hashes = hashN(node, m_n);
     for (auto hash : hashes) {
         m_hashes.push_back(hash);
@@ -29,9 +30,18 @@ void ConsistentHasher::printHashesToNodes() {
     std::cout << "---------------------" << std::endl;
 }
 
-/* TODO: Remove node from ring */
+/* Removes a failed node */
 void ConsistentHasher::removeNode(int node) {
-    
+    // Remove all hashes for this node from the ring and the mapping of hashes to nodes
+    for (auto it = m_hashes.begin(); it != m_hashes.end();) {
+        if (m_hashes_to_nodes[*it] == node) {
+            m_hashes_to_nodes.erase(*it);
+            it = m_hashes.erase(it);
+        }
+        else {
+            it++;
+        }
+    }
 }
 
 /* Returns the node to handle the request for this key. */
