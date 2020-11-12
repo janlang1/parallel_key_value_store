@@ -1,0 +1,16 @@
+C hi bye
+C john kang
+C jack li
+C prajakta Karandikar
+U prajakta female
+U jack male
+U john male
+U hi ahola
+R hi
+R john
+R jack 
+R prajakta 
+D prajakta 
+D jack 
+D john 
+D hi

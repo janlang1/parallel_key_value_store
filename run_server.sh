@@ -1,4 +1,4 @@
 #!/bin/bash
 
-N=2
-/usr/local/bin/mpirun -np "$N" ./server
+N=9
+/usr/local/bin/mpirun -np "$N" --oversubscribe ./server

@@ -1,0 +1,16 @@
+C play ground
+R play
+U play date
+D play
+C ice cream
+R ice
+U ice rink
+D ice
+C you tube
+R you
+U you me
+D you
+C insta gram
+R insta
+U insta coffee
+D insta

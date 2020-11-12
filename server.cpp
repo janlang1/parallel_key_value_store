@@ -77,6 +77,8 @@ void *serveClient(void *arg) {
         string key = getKey(request);
         int node = consistentHasher.sendRequestTo(key);
         cout << "Sending request " << request << " to node " << node << endl;
+        //print the key and the node it goes to. 
+        cout << "Node:" << node << " Key:" << key << endl;
         MPI_Send(request.c_str(), request.size(), MPI_CHAR, node, 0, MPI_COMM_WORLD);
                 
         /* READ requests should return a value back from the worker node */
@@ -193,6 +195,7 @@ int main(int argc, char** argv) {
                 
                 found = request.find_last_not_of(' '); // Remove trailing spaces
                 request.erase(found + 1);
+                
                 /*
                 cout << "Received request " << request << endl;
                 cout << "Request has size " << request.size() << endl;
