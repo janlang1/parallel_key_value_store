@@ -11,20 +11,31 @@
 #include <time.h>
 #include <iostream>
 #include <iomanip>
+#include <random>
 #include <string>
 #include <mpi.h>
 
 #include "ConsistentHasher.hpp"
 #include "Protocol.hpp"
 #include "crud.hpp"
+#include "pthread_barrier_t.hpp"
 
 #define ERROR 1
 #define CTRLC 2
+#define N_WORKERS 4  // Number of worker nodes. This should always be set to 1 less than N in the script run_server.sh
 
 using namespace std;
 
 int exit_code = 0;
+pthread_mutex_t mux;
+pthread_barrier_t barrier;
 ConsistentHasher consistentHasher;
+bool failed[N_WORKERS];
+
+// Random number generators for failing nodes
+random_device rd;
+mt19937 gen(rd());
+uniform_real_distribution<> dis(0.0, 1.0);
 
 // Handle SIGINT signals
 void signal_handler(int signal_number) {
@@ -32,6 +43,16 @@ void signal_handler(int signal_number) {
         cout << "Terminating program" << endl;
         exit_code = CTRLC;
     }
+}
+
+int numFailedNodes() {
+    int n_failed_nodes = 0;
+    for (int i = 0; i < N_WORKERS; i++) {
+        if (failed[i]) {
+            n_failed_nodes++;
+        }
+    }
+    return n_failed_nodes;
 }
 
 void *serveClient(void *arg) {
@@ -76,6 +97,28 @@ void *serveClient(void *arg) {
         /* Extract the key from the request and send it to the appropriate worker node */
         string key = getKey(request);
         int node = consistentHasher.sendRequestTo(key);
+        
+        /* Randomly fail a node if half the number of nodes haven't failed yet */
+        double p_fail = dis(gen);
+        cout << "p_fail is " << p_fail << endl;
+        if (p_fail <= 0.2) {
+            pthread_mutex_lock(&mux);
+            int n_failed_nodes = numFailedNodes();
+            if (!failed[node - 1] && (n_failed_nodes < N_WORKERS / 2) && N_WORKERS > 1) {
+                failed[node - 1] = true;
+                cout << "Node " << node << " failed!" << endl;
+                consistentHasher.removeNode(node);
+            }
+            pthread_mutex_unlock(&mux);
+        }
+        
+        /* Wait for all failed nodes to be removed, if any */
+        pthread_barrier_wait(&barrier);
+        
+        /* If this node has failed, reroute it to another */
+        if (failed[node - 1]) {
+            node = consistentHasher.sendRequestTo(key);
+        }
         cout << "Sending request " << request << " to node " << node << endl;
         //print the key and the node it goes to. 
         cout << "Node:" << node << " Key:" << key << endl;
@@ -95,6 +138,10 @@ void *serveClient(void *arg) {
         }
     }
     
+    /* Reduce number of threads client has to wait for upon exiting */
+    pthread_mutex_lock(&mux);
+    pthread_barrier_update(&barrier);
+    pthread_mutex_unlock(&mux);
     return NULL;
 }
 
@@ -115,6 +162,10 @@ int main(int argc, char** argv) {
         for (int i = 1; i < size; i++) {
             consistentHasher.addNode(i);
         }
+        
+        /* Initialize synchronization resources */
+        pthread_barrier_init(&barrier, NULL, N_WORKERS);
+        pthread_mutex_init(&mux, NULL);
         
         /* Set up TCP connections */
         int socket_fd, client_socket_fd;
@@ -161,6 +212,11 @@ int main(int argc, char** argv) {
         
         /* Start accepting client connections */
         if (!exit_code) {
+            // Initialize fail array
+            for (int i = 0; i < N_WORKERS; i++) {
+                failed[i] = false;
+            }
+            
             // Spawn a thread for each client
             for (int i = 0; i < size - 1; i++) {
                 if (pthread_create(&pthreads[i], NULL, serveClient, (void *) &socket_fd)) {
@@ -182,6 +238,9 @@ int main(int argc, char** argv) {
             }
             
             cout << "Joined threads" << endl;
+            
+            pthread_barrier_destroy(&barrier);
+            pthread_mutex_destroy(&mux);
         }
     }
     else {
@@ -202,7 +261,6 @@ int main(int argc, char** argv) {
                 */
                 /* 2. Parse command. Determine what operation it is, separate key and value, and perform the operation using instance of CRUD class */
                 //first letter
-                struct timespec start, stop;
                 string k = getKey(request);
                 string v;
                 double t1, t2;
@@ -213,7 +271,6 @@ int main(int argc, char** argv) {
                     cruds[rank - 1].Create(k,v);
                 } else if (request[0] == READ){
                     v = cruds[rank - 1].Read(k);
-                    // cout << "value for key " << k << " is " << v << endl;
                     MPI_Send(v.c_str(), v.size(), MPI_CHAR, 0, 0, MPI_COMM_WORLD);
                 } else if (request[0] == UPDATE){
                     v = getValue(request);
