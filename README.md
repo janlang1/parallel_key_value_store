@@ -10,7 +10,7 @@ Once the server is started up, open up as many terminals as there are for number
 
 When all 16 commands have been processed, in each client, enter "DONE" to inform the server of shutting down. This will cause all the clients to cleanly exit and inform the server to join all threads. On the server's terminal, CTRL-C to terminate the server. 
 
-For testing in cases of node failure, uncomment the sections in server.cpp labeled with "NODE FAILURE". Leaving these sections commented will not fail any nodes.
+For testing in cases of node failure, uncomment the sections in server.cpp wrapped around with "NODE FAILURE". Leaving these sections commented will not fail any nodes.
 
 
 
