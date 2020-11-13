@@ -1,0 +1,210 @@
+1 worker node
+There are 1 worker nodes
+Hash for key hi is 1041913313
+Sending request C hi bye to node 1
+Execution time is 0.000246 for node 1
+Hash for key john is 1616003960
+Sending request C john kang to node 1
+Execution time is 0.000006 for node 1
+Hash for key jack is 1426479423
+Sending request C jack li to node 1
+Execution time is 0.000018 for node 1
+Hash for key prajakta is 2633889479
+Sending request C prajakta Karandikar to node 1
+Execution time is 0.000007 for node 1
+Hash for key prajakta is 2633889479
+Sending request U prajakta female to node 1
+Execution time is 0.000014 for node 1
+Hash for key jack is 1426479423
+Sending request U jack male to node 1
+Execution time is 0.000006 for node 1
+Hash for key john is 1616003960
+Sending request U john male to node 1
+Execution time is 0.000005 for node 1
+Hash for key hi is 1041913313
+Sending request U hi ahola to node 1
+Execution time is 0.000005 for node 1
+Hash for key hi is 1041913313
+Sending request R hi to node 1
+Execution time is 0.000044 for node 1
+Hash for key john is 1616003960
+Sending request R john to node 1
+Execution time is 0.000010 for node 1
+Hash for key jack is 1426479423
+Sending request R jack to node 1
+Execution time is 0.000007 for node 1
+Hash for key prajakta is 2633889479
+Sending request R prajakta to node 1
+Execution time is 0.000010 for node 1
+Hash for key prajakta is 2633889479
+Sending request D prajakta to node 1
+Execution time is 0.000008 for node 1
+Hash for key jack is 1426479423
+Sending request D jack to node 1
+Execution time is 0.000008 for node 1
+Hash for key john is 1616003960
+Sending request D john to node 1
+Execution time is 0.000010 for node 1
+Hash for key hi is 1041913313
+Sending request D hi to node 1
+Execution time is 0.000007 for node 1
+
+2 worker nodes
+There are 2 worker nodes
+Hash for key hi is 1041913313
+Sending request C hi bye to node 2
+Execution time is 0.000021 for node 2
+Hash for key john is 1616003960
+Sending request C john kang to node 1
+Execution time is 0.000016 for node 1
+Hash for key jack is 1426479423
+Sending request C jack li to node 2
+Execution time is 0.000008 for node 2
+Hash for key prajakta is 2633889479
+Sending request C prajakta Karandikar to node 1
+Execution time is 0.000005 for node 1
+Hash for key prajakta is 2633889479
+Sending request U prajakta female to node 1
+Execution time is 0.000011 for node 1
+Hash for key jack is 1426479423
+Sending request U jack male to node 2
+Execution time is 0.000013 for node 2
+Hash for key john is 1616003960
+Sending request U john male to node 1
+Execution time is 0.000005 for node 1
+Hash for key hi is 1041913313
+Sending request U hi ahola to node 2
+Execution time is 0.000005 for node 2
+Hash for key hi is 1041913313
+Sending request R hi to node 2
+Execution time is 0.000055 for node 2
+Hash for key john is 1616003960
+Sending request R john to node 1
+Execution time is 0.000086 for node 1
+Hash for key jack is 1426479423
+Sending request R jack to node 2
+Execution time is 0.000009 for node 2
+Hash for key prajakta is 2633889479
+Sending request R prajakta to node 1
+Execution time is 0.000008 for node 1
+Hash for key prajakta is 2633889479
+Sending request D prajakta to node 1
+Execution time is 0.000007 for node 1
+Hash for key jack is 1426479423
+Sending request D jack to node 2
+Execution time is 0.000008 for node 2
+Hash for key john is 1616003960
+Sending request D john to node 1
+Execution time is 0.000007 for node 1
+Hash for key hi is 1041913313
+Sending request D hi to node 2
+Execution time is 0.000006 for node 2
+
+4 worker nodes
+There are 4 worker nodes
+Hash for key hi is 1041913313
+Sending request C hi bye to node 2
+Execution time is 0.000020 for node 2
+Hash for key john is 1616003960
+Sending request C john kang to node 3
+Execution time is 0.000021 for node 3
+Hash for key jack is 1426479423
+Sending request C jack li to node 2
+Execution time is 0.000008 for node 2
+Hash for key prajakta is 2633889479
+Sending request C prajakta Karandikar to node 4
+Execution time is 0.000018 for node 4
+U prajakta female
+Hash for key prajakta is 2633889479
+Sending request U prajakta female to node 4
+Execution time is 0.000011 for node 4
+Hash for key jack is 1426479423
+Sending request U jack male to node 2
+Execution time is 0.000011 for node 2
+Hash for key john is 1616003960
+Sending request U john male to node 3
+Execution time is 0.000012 for node 3
+U hi aholaHash for key hi is 1041913313
+Sending request U hi ahola to node 2
+Execution time is 0.000005 for node 2
+Hash for key hi is 1041913313
+Sending request R hi to node 2
+Execution time is 0.000057 for node 2
+Hash for key john is 1616003960
+Sending request R john to node 3
+Execution time is 0.000053 for node 3
+Hash for key jack is 1426479423
+Sending request R jack to node 2
+Execution time is 0.000007 for node 2
+Hash for key prajakta is 2633889479
+Sending request R prajakta to node 4
+Execution time is 0.000052 for node 4
+Hash for key prajakta is 2633889479
+Sending request D prajakta to node 4
+Execution time is 0.000008 for node 4
+Hash for key jack is 1426479423
+Sending request D jack to node 2
+Execution time is 0.000007 for node 2
+Hash for key john is 1616003960
+Sending request D john to node 3
+Execution time is 0.000007 for node 3
+Hash for key hi is 1041913313
+Sending request D hi to node 2
+Execution time is 0.000007 for node 2
+Hash for key hi is 1041913313
+Sending request D hi to node 2
+Execution time is 0.000002 for node 2
+Hash for key hi is 1041913313
+Sending request D hi to node 2
+Execution time is 0.000002 for node 2
+
+8 Worker Nodes
+There are 8 worker nodes
+Hash for key hi is 1041913313
+Sending request C hi bye to node 5
+Execution time is 0.000302 for node 5
+Hash for key john is 1616003960
+Sending request C john kang to node 2
+Execution time is 0.000018 for node 2
+Hash for key jack is 1426479423
+Sending request C jack li to node 2
+Execution time is 0.000006 for node 2
+Hash for key prajakta is 2633889479
+Sending request C prajakta Karandikar to node 5
+Execution time is 0.000006 for node 5
+Hash for key prajakta is 2633889479
+Sending request U prajakta female to node 5
+Execution time is 0.000010 for node 5
+Hash for key jack is 1426479423
+Sending request U jack male to node 2
+Execution time is 0.000011 for node 2
+Hash for key john is 1616003960
+Sending request U john male to node 2
+Execution time is 0.000006 for node 2
+Hash for key hi is 1041913313
+Sending request U hi ahola to node 5
+Execution time is 0.000005 for node 5
+Hash for key hi is 1041913313
+Sending request R hi to node 5
+Execution time is 0.000040 for node 5
+Hash for key john is 1616003960
+Sending request R john to node 2
+Execution time is 0.000050 for node 2
+Hash for key jack is 1426479423
+Sending request R jack to node 2
+Execution time is 0.000008 for node 2
+Hash for key prajakta is 2633889479
+Sending request R prajakta to node 5
+Execution time is 0.000009 for node 5
+Hash for key prajakta is 2633889479
+Sending request D prajakta to node 5
+Execution time is 0.000008 for node 5
+Hash for key jack is 1426479423
+Sending request D jack to node 2
+Execution time is 0.000007 for node 2
+Hash for key john is 1616003960
+Sending request D john to node 2
+Execution time is 0.000009 for node 2
+Hash for key hi is 1041913313
+Sending request D hi to node 5
+Execution time is 0.000008 for node 5

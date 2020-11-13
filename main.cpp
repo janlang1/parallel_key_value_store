@@ -10,6 +10,7 @@ using namespace std;
 
 int main()
 {
+    int i = 0;
     
     ConsistentHasher consistentHasher = ConsistentHasher(4);
     consistentHasher.addNode(1);

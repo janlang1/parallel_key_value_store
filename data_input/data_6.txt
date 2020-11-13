@@ -9,7 +9,7 @@ U hi ahola
 R hi
 R john
 R jack 
-R prajakta 
+R prajakta
 D prajakta 
 D jack 
 D john 

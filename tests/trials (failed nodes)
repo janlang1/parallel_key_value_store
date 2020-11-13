@@ -1,0 +1,148 @@
+node 4
+Sending request C hi bye to node 2
+Execution time is 0.000332 for node 2
+Hash for key john is 1616003960
+Sending request C john kang to node 3
+Execution time is 0.000020 for node 3
+Hash for key jack is 1426479423
+Sending request C jack li to node 2
+Execution time is 0.000007 for node 2
+Hash for key prajakta is 2633889479
+Sending request U prajakta female to node 4
+Execution time is 0.000014 for node 4
+Hash for key jack is 1426479423
+Sending request U jack male to node 2
+Execution time is 0.000010 for node 2
+Hash for key john is 1616003960
+Sending request U john male to node 3
+Execution time is 0.000011 for node 3
+Hash for key hi is 1041913313
+Sending request U hi ahola to node 2
+Execution time is 0.000005 for node 2
+Hash for key hi is 1041913313
+Sending request R hi to node 2
+Execution time is 0.000070 for node 2
+Hash for key john is 1616003960
+Sending request R john to node 3
+Execution time is 0.000062 for node 3
+Hash for key prajakta is 2633889479
+Sending request R prajakta to node 4
+Execution time is 0.000054 for node 4
+Hash for key prajakta is 2633889479
+Sending request R prajakta to node 4
+Execution time is 0.000027 for node 4
+Hash for key john is 1616003960
+Sending request D john to node 3
+Execution time is 0.000007 for node 3
+Hash for key hi is 1041913313
+Sending request U hi ahola to node 2
+Execution time is 0.000005 for node 2
+Hash for key jack is 1426479423
+Sending request R jack to node 2
+Execution time is 0.000015 for node 2
+Hash for key john is 1616003960
+Sending request R john to node 3
+Execution time is 0.000019 for node 3
+Hash for key john is 1616003960
+Sending request U john male to node 3
+Execution time is 0.000003 for node 3
+Hash for key hi is 1041913313
+Sending request C hi bye to node 2
+Execution time is 0.000004 for node 2
+
+node 8
+Sending request C play ground to node 4
+Execution time is 0.000334 for node 4
+Hash for key play is 2765329725
+Sending request R play to node 4
+Execution time is 0.000046 for node 4
+Hash for key play is 2765329725
+Sending request U play date to node 4
+Execution time is 0.000028 for node 4
+Hash for key play is 2765329725
+Sending request D play to node 4
+Execution time is 0.000008 for node 4
+Hash for key ice is 3700642612
+Sending request C ice cream to node 8
+Execution time is 0.000022 for node 8
+Hash for key ice is 3700642612
+Sending request R ice to node 8
+Execution time is 0.000058 for node 8
+Hash for key ice is 3700642612
+Sending request U ice rink to node 8
+Execution time is 0.000011 for node 8
+Hash for key ice is 3700642612
+Sending request D ice to node 8
+Execution time is 0.000006 for node 8
+Hash for key you is 328701634
+Sending request C you tube to node 3
+Execution time is 0.000021 for node 3
+Hash for key you is 328701634
+Sending request R you to node 3
+Execution time is 0.000057 for node 3
+Hash for key you is 328701634
+Sending request U you me to node 3
+Execution time is 0.000011 for node 3
+Hash for key you is 328701634
+Sending request D you to node 3
+Execution time is 0.000007 for node 3
+Hash for key insta is 2050507557
+Sending request C insta gram to node 1
+Execution time is 0.000021 for node 1
+Hash for key insta is 2050507557
+Sending request R insta to node 1
+Execution time is 0.000058 for node 1
+Hash for key insta is 2050507557
+Sending request U insta coffee to node 1
+Execution time is 0.000012 for node 1
+Hash for key insta is 2050507557
+Sending request D insta to node 1
+Execution time is 0.000008 for node 1
+
+There are 8 worker nodes
+Hash for key play is 2765329725
+Sending request C play ground to node 4
+Execution time is 0.000299 for node 4
+Hash for key play is 2765329725
+Sending request R play to node 4
+Execution time is 0.000063 for node 4
+Hash for key play is 2765329725
+Sending request U play date to node 4
+Execution time is 0.000012 for node 4
+Hash for key play is 2765329725
+Sending request D play to node 4
+Execution time is 0.000008 for node 4
+Hash for key ice is 3700642612
+Sending request C ice cream to node 8
+Execution time is 0.000030 for node 8
+Hash for key ice is 3700642612
+Sending request R ice to node 8
+Execution time is 0.000079 for node 8
+Hash for key ice is 3700642612
+Sending request U ice rink to node 8
+Execution time is 0.000011 for node 8
+Hash for key ice is 3700642612
+Sending request D ice to node 8
+Execution time is 0.000009 for node 8
+Hash for key you is 328701634
+Sending request C you tube to node 3
+Execution time is 0.000063 for node 3
+Hash for key you is 328701634
+Sending request U you me to node 3
+Execution time is 0.000011 for node 3
+Hash for key ice is 3700642612
+Sending request D ice to node 8
+Execution time is 0.000003 for node 8
+Hash for key insta is 2050507557
+Sending request C insta gram to node 1
+Execution time is 0.000048 for node 1
+Hash for key insta is 2050507557
+Sending request R insta to node 1
+Execution time is 0.000087 for node 1
+Hash for key insta is 2050507557
+Sending request U insta coffee to node 1
+Execution time is 0.000011 for node 1
+Hash for key insta is 2050507557
+Sending request D insta to node 1
+Execution time is 0.000019 for node 1
+

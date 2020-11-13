@@ -16,6 +16,7 @@ void Crud::Update(std::string k, std::string v) {
 }
 
 void Crud::Delete(std::string k) {
+    int i = 0;
     auto it = hashtable.find(k);
     if (it != hashtable.end()) {
         hashtable.erase(hashtable.find(k));
