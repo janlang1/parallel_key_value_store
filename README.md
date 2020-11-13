@@ -12,5 +12,15 @@ When all 16 commands have been processed, in each client, enter "DONE" to inform
 
 For testing in cases of node failure, uncomment the sections in server.cpp wrapped around with "NODE FAILURE". Leaving these sections commented will not fail any nodes.
 
+# installation
+1. download most stable version of MPI that is compatible with your current GCC, GLIBCXX, and CXXABI
+https://www.open-mpi.org/
+2. once the tar or zip file is downloaded uncompress it and an install file should be in the folder, the main thing is in the folder directory in the terminal run "make install all"
+3. ./configure --enable-mpi-thread-multiple
+4. You should now be able to compile your MPI code locally just how it is on the USC server.
+
+# platform used 
+MacOS 10.15.7 (19H2)
+2.7 GHz Dual-Core Intel Core i5
 
 
