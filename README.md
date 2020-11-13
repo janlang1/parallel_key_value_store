@@ -1,13 +1,16 @@
 # parallel_key_value_store
 
-## Files Included
-* client.cpp: Client program to communicate with server using TCP sockets. Repeatedly take in user requests via STDIN using the following format
-    <OP> <Key> <Value>
-  where OP is one of the CRUD operations encoded as 'C' for Create, 'R' for Read, 'U' for Update, and 'D' for Delete. <Value> is not needed for 'R' and 'D'. Key and Value are just strings for now (TODO: store files, both binary and text, later on?). When specifying requests, format the string as <OP> <Key> <Value>. Continuously send such request strings to the server. If done sending requests, send a "DONE" message to the server and exit cleanly.
-* server.cpp: MPI Server program to handle client requests. Workload is divided as follows:
-  1. P0 - The central master node that processes incoming requests. Prior to setting up TCP connections (spawning a thread for each client), it hashes all the nodes N times, where N is the number of slave nodes and stores all the hashes in a sorted vector. A mapping of the hashes to their corresponding nodes is maintained. Multi-threaded with pthreads to enable concurrent processing of multiple requests. Each thread continuously receives and parses client requests, performs consistent hashing on the keys, and assigns them to the appropriate node by performing a binary search on the list of node hashes and looking up the right node in the mapping of hashes to nodes. If it's a 'R' op, receive the corresponding value from the node and send it back to the client. If a "DONE" message is received, terminate the thread function. 
-  2. P1...PN - These are the slave nodes that are responsible for performing the CRUD operations on the data. Since each node may receive multiple requests at a time, maintain a vector of vector of chars based on the number of clients. Each maintains an instance of a class object that consists of a hashmap of strings for storing the data and methods for the CRUD operations. If the operation is 'R', then the node attempts to find the matching value for the key. If such a value is found, then it is sent back to P0. Else, a failure message is returned.
-* kv_store.h/kv_store.cpp: Header and source files for implementing the key-value store operations. Class containing a member variable of a hash map of strings to strings and the CRUD methods to operate on the stored data. (TODO: use SQL database instead of simply a hash map?)
-  
-## Testing
-We will test our system using different number of worker nodes (1, 2, 4, and 8 for now). The number of clients will be the same as the number of worker nodes (TODO: randomly fail some nodes and reintroduce them later to test how well our consistent hashing scheme redistributes the workload). Within each thread function in P0 of the server, time how long it takes for the worker node to perform the desired op and return a result (if any). Also, in P0, see how many requests on average get assigned to each node to determine load balancing.  
+## Compilation
+To compile the code, run $ make. This will build all the other dependendant binaries. See Makefile for all other targets. To remove all executables, run $ make clean.
+
+## Execution
+To start up the server, run the bash script run_server.sh like $ ./run_server.sh. In that script, there is a variable N indicating the total number of nodes, including the master. Since we benchmarked our code in terms of the number of worker nodes, N would be 2, 3, 5, and 9, corresponding to the number of workers 1, 2, 4, and 8 respectively. For example, if testing with 4 worker nodes, N = 5. If installation instructions were followed correctly, the program "mpirun", which runs a compiled mpi program should be installed under /usr/local/bin on Mac OS (all available versions).
+
+Once the server is started up, open up as many terminals as there are for number of workers, which is also the number of clients. E.g. for 4 workers, this would be 4 extra terminal windows, excluding the one for the server. Each of the included data text files contains 16 properly formatted CRUD commands. Divide these 16 commands among the number of clients evenly (e.g. 8 commands each for 2 clients and 4 commands each for 4 clients) in a fashion similar to block cyclic distribution. For 2 sets of 8 commands, input them in this order: 1. Command1 2. Command2 1. Command3 2. Command4, etc. On the server side, several debugging statements will be printed to provide information on latency per request and numbers useful for computing load balancing factor per round (e.g. with 2 clients, there are 8 rounds).
+
+When all 16 commands have been processed, in each client, enter "DONE" to inform the server of shutting down. This will cause all the clients to cleanly exit and inform the server to join all threads. On the server's terminal, CTRL-C to terminate the server. 
+
+For testing in cases of node failure, uncomment the sections in server.cpp wrapped around with "NODE FAILURE". Leaving these sections commented will not fail any nodes.
+
+
+

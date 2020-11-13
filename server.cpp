@@ -22,24 +22,26 @@
 
 #define ERROR 1
 #define CTRLC 2
-// #define N_WORKERS 2  // Number of worker nodes. This should always be set to 1 less than N in the script run_server.sh
+#define N_WORKERS 2  // Number of worker nodes. This should always be set to 1 less than N in the script run_server.sh
 
 using namespace std;
 
 int exit_code = 0;
-/*
+ConsistentHasher consistentHasher;
+
+/* NODE FAILURE */
 pthread_mutex_t mux;
 pthread_barrier_t barrier;
- */
-ConsistentHasher consistentHasher;
-//bool failed[N_WORKERS];
+bool failed[N_WORKERS];
+/* NODE FAILURE */
 
+/* NODE FAILURE */
 // Random number generators for failing nodes
 /*
 random_device rd;
 mt19937 gen(rd());
 uniform_real_distribution<> dis(0.0, 1.0);
- */
+/* NODE FAILURE */
 
 // Handle SIGINT signals
 void signal_handler(int signal_number) {
@@ -48,7 +50,8 @@ void signal_handler(int signal_number) {
         exit_code = CTRLC;
     }
 }
-/*
+
+/* NODE FAILURE */
 int numFailedNodes() {
     int n_failed_nodes = 0;
     for (int i = 0; i < N_WORKERS; i++) {
@@ -58,7 +61,8 @@ int numFailedNodes() {
     }
     return n_failed_nodes;
 }
-*/
+/* NODE FAILURE */
+
 void *serveClient(void *arg) {
     int client_address_len, socket_fd, client_socket_fd;
     struct sockaddr_in client_address;
@@ -102,6 +106,7 @@ void *serveClient(void *arg) {
         string key = getKey(request);
         int node = consistentHasher.sendRequestTo(key);
         
+        /* NODE FAILURE */
         /* Randomly fail a node if half the number of nodes haven't failed yet */
         /*
         double p_fail = dis(gen);
@@ -125,7 +130,8 @@ void *serveClient(void *arg) {
         if (failed[node - 1]) {
             node = consistentHasher.sendRequestTo(key);
         }
-         */
+        /* NODE FAILURE */
+        
         cout << "Sending request " << request << " to node " << node << endl;
         MPI_Send(request.c_str(), request.size(), MPI_CHAR, node, 0, MPI_COMM_WORLD);
                 
@@ -143,12 +149,13 @@ void *serveClient(void *arg) {
         }
     }
     
+    /* NODE FAILURE */
     /* Reduce number of threads client has to wait for upon exiting */
     /*
     pthread_mutex_lock(&mux);
     pthread_barrier_update(&barrier);
     pthread_mutex_unlock(&mux);
-     */
+    /* NODE FAILURE */
     return NULL;
 }
 
@@ -170,11 +177,12 @@ int main(int argc, char** argv) {
             consistentHasher.addNode(i);
         }
         
+        /* NODE FAILURE */
         /* Initialize synchronization resources */
         /*
         pthread_barrier_init(&barrier, NULL, N_WORKERS);
         pthread_mutex_init(&mux, NULL);
-         */
+        /* NODE FAILURE */
         
         /* Set up TCP connections */
         int socket_fd, client_socket_fd;
@@ -247,10 +255,11 @@ int main(int argc, char** argv) {
             }
             
             cout << "Joined threads" << endl;
-            /*
+            
+            /* NODE FAILURE */
             pthread_barrier_destroy(&barrier);
             pthread_mutex_destroy(&mux);
-             */
+            /* NODE FAILURE */
         }
     }
     else {
